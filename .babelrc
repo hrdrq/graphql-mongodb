@@ -1,9 +1,7 @@
 {
-	"presets": [
-		"es2015"
-	],
-	"plugins": [
-		"syntax-async-functions",
-		"transform-regenerator"
+  "passPerPreset": true,
+  "presets": [
+    "es2015",
+    "stage-0"
   ]
 }

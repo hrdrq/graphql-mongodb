@@ -8,12 +8,13 @@ node.jsとexpressで構築
 
 受注は複数の商品と一人の顧客で構成
 
+商品の変更を監視（subscription）
+
 ## インストール、ビルド、起動:
 
 ```
-yarn install
-yarn run build
-yarn start
+npm install
+npm start
 ```
 
 ## 使い方：
@@ -24,6 +25,16 @@ mutation createProduct {
     _id
     category
     title
+  }
+}
+
+mutation updateProduct {
+  updateProduct(_id:"5b349de8ab54920d2dde55ad",
+                title:"iPhone",
+                category:"phone") {
+    _id
+    title
+    category
   }
 }
 
@@ -72,9 +83,9 @@ query searchCustomer {
 
 mutation createOrder {
   createOrder(price: 100, 
-    		  products:["5b349de8ab54920d2dde55ad", 
-                		"5b349e03ab54920d2dde55ae"],
-  			  customer:"5b34a422452dd05397126fc6"){
+              products:["5b349de8ab54920d2dde55ad", 
+                        "5b349e03ab54920d2dde55ae"],
+              customer:"5b34a422452dd05397126fc6"){
     _id
     price
     products {
@@ -126,4 +137,17 @@ query searchOrder {
     }
   }
 }
+```
+
+## subscriptionの使い方
+
+```graphql
+subscription {
+  productInfoChanged {
+    _id
+    title
+    category
+  }
+}
+
 ```
